@@ -1,0 +1,61 @@
+
+version: 2
+
+models:
+  - name: stg_fuel_data_wide_table
+    description: "Fuel prices wide table. Some minor data type conversions and renaming from raw"
+    columns:
+      - name: publish_date
+        description: "Date for which the price applies"
+        data_tests:
+          - not_null
+      - name: trading_name
+        description: "Petrol station name/trading name"
+        data_tests:
+          - not_null
+      - name: brand_description
+        description: "Brand of petrol station"
+        data_tests:
+          - not_null
+      - name: product_price
+        description: "Product price per litre in cents"
+        data_tests:
+          - not_null
+      - name: product_description
+        description: "Type of fuel product"
+        data_tests:
+          - not_null
+      - name: address
+        description: "Petrol station address"
+        data_tests:
+          - not_null
+      - name: suburb
+        description: "Suburb/location name"
+        data_tests:
+          - not_null
+      - name: postcode
+        description: "Suburb/location postal code"
+        data_tests:
+          - not_null
+      - name: area_description
+        description: "Area name"
+        data_tests:
+          - not_null
+      - name: region_description
+        description: "Region name"
+        data_tests:
+          - not_null
+      - name: dbt_loaded_at
+        description: "Timestamp of data load to schema"
+        data_tests:
+          - not_null
+
+
+sources:
+  - name: raw
+    database: dbt_project
+    schema: raw
+    tables:
+      - name: raw_fuel_watch__historic_fuel_price
+      - name: raw_dim_date
+

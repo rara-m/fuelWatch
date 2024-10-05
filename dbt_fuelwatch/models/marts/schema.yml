@@ -1,0 +1,400 @@
+
+version: 2
+
+models:
+  - name: dim_region
+    description: "Region dimension table"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: _region_sk
+        data_type: text
+        description: "Region primary key"
+        constraints:
+          - type: not_null
+          - type: primary_key
+        data_tests:
+          - unique
+          - not_null
+      - name: region_description
+        data_type: text
+        description: "Region name"
+        data_tests:
+          - unique
+          - not_null
+      - name: dbt_loaded_at
+        data_type: timestamp
+        description: "Timestamp of data load to schema"
+
+  - name: dim_brand
+    description: "Brand dimension table"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: _brand_sk
+        data_type: text
+        description: "Brand primary key"
+        constraints:
+          - type: not_null
+          - type: primary_key
+        data_tests:
+          - unique
+          - not_null
+      - name: brand_description
+        data_type: text
+        description: "Brand name"
+        data_tests:
+          - unique
+          - not_null
+      - name: dbt_loaded_at
+        data_type: timestamp
+        description: "Timestamp of data load to schema"
+
+  - name: dim_date
+    description: "Date dimension table"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: date
+        data_type: date
+        description: "Date in 'YYYY-MM-DD' format"
+        data_tests:
+          - not_null
+      - name: day
+        data_type: varchar
+        description: "Date in 'YYYY-MM-DD' format"
+        data_tests:
+          - not_null
+      - name: date_key
+        data_type: integer
+        description: "Integer type primary key in 'YYYYMMDD' format"
+        constraints:
+          - type: not_null
+          - type: primary_key
+        data_tests:
+          - not_null
+      - name: day_of_week
+        data_type: varchar
+        description: "Day number in the week"
+        data_tests:
+          - not_null
+      - name: day_of_week_name_eeee
+        data_type: varchar
+        description: "Day name - full ('eeee' format)"
+        data_tests:
+          - not_null
+      - name: day_of_week_name_ee
+        data_type: varchar
+        description: "Day name - abbreviated to 3 chars ('eee' format)"
+        data_tests:
+          - not_null
+      - name: day_of_month
+        data_type: varchar
+        description: "Day number in the month"
+        data_tests:
+          - not_null
+      - name: day_of_year
+        data_type: varchar
+        description: "Day number in the year"
+        data_tests:
+          - not_null
+      - name: day_number_string
+        data_type: varchar
+        description: "Day number in the month in varchar format"
+        data_tests:
+          - not_null
+      - name: week
+        data_type: varchar
+        description: "Week number in the year"
+        data_tests:
+          - not_null
+      - name: week_name_long
+        data_type: varchar
+        description: "Week name in 'Week nn' format"
+        data_tests:
+          - not_null
+      - name: week_name_short
+        data_type: varchar
+        description: "Week name in 'W nn' format"
+        data_tests:
+          - not_null
+      - name: week_number_string
+        data_type: varchar
+        description: "Week number in the year in 'nn' format"
+        data_tests:
+          - not_null
+      - name: week_start_date
+        data_type: varchar
+        description: "Week start date in 'YYYY-MM-DD' format"
+        data_tests:
+          - not_null
+      - name: week_end_date
+        data_type: varchar
+        description: "Week end date in 'YYYY-MM-DD' format"
+        data_tests:
+          - not_null
+      - name: month
+        data_type: varchar
+        description: "Month number in the year"
+        data_tests:
+          - not_null
+      - name: month_name_mmmm
+        data_type: varchar
+        description: "Month name - full ('mmmm' format)"
+        data_tests:
+          - not_null
+      - name: month_name_mmm
+        data_type: varchar
+        description: "Month name - abbreviated to 3 chars ('mmm' format)"
+        data_tests:
+          - not_null
+      - name: month_number_mm
+        data_type: varchar
+        description: "Month number in the year in 'nn' format"
+        data_tests:
+          - not_null
+      - name: month_year_dash_yy
+        data_type: varchar
+        description: "Month abbreviated name and year in 'MMM-YY' format"
+        data_tests:
+          - not_null
+      - name: month_year_index
+        data_type: varchar
+        description: "Month number as offset from current month"
+        data_tests:
+          - not_null
+      - name: quarter
+        data_type: varchar
+        description: "Quarter number in the year"
+        data_tests:
+          - not_null
+      - name: quarter_name_qqqq
+        data_type: varchar
+        description: "Quarter name as 'nTH quarter'"
+        data_tests:
+          - not_null
+      - name: quarter_name_qqq
+        data_type: varchar
+        description: "Quarter number as 'Qn'"
+        data_tests:
+          - not_null
+      - name: quarter_number_qq
+        data_type: varchar
+        description: "Quarter number in 'nn' format (leading 0 not removed)"
+        data_tests:
+          - not_null
+      - name: quarter_year_dash_yy
+        data_type: varchar
+        description: "Quarter abbreviated name and year in 'QQQ-YY' format"
+        data_tests:
+          - not_null
+      - name: quarter_year_index
+        data_type: varchar
+        description: "Quarter number as offset from current quarter"
+        data_tests:
+          - not_null
+      - name: year_quarter_yyyy_qq
+        data_type: varchar
+        description: "Quarter of year in 'YYYYQQ' format"
+        data_tests:
+          - not_null
+      - name: year
+        data_type: varchar
+        description: "Year value"
+        data_tests:
+          - not_null
+      - name: year_index
+        data_type: varchar
+        description: "Year number as offset from current year"
+        data_tests:
+          - not_null
+      - name: year_month_yyyy_mm
+        data_type: varchar
+        description: "Month of the yar in 'YYYYMM' format"
+        data_tests:
+          - not_null
+      - name: month_start_date
+        data_type: varchar
+        description: "The first day of the month as date"
+        data_tests:
+          - not_null
+      - name: month_end_date
+        data_type: varchar
+        description: "The last day of the month as date"
+        data_tests:
+          - not_null
+      - name: loaded_at
+        data_type: timestamp
+        description: "Timestamp of load date time"
+        data_tests:
+          - not_null
+
+  - name: dim_area
+    description: "Area dimension table"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: _area_sk
+        data_type: text
+        description: "Area primary key"
+        constraints:
+          - type: not_null
+          - type: primary_key
+        data_tests:
+          - unique
+          - not_null
+      - name: area_description
+        data_type: text
+        description: "Area name"
+        data_tests:
+          - unique
+          - not_null
+      - name: dbt_loaded_at
+        data_type: timestamp
+        description: "Timestamp of data load to schema"
+
+  - name: dim_station
+    description: "Petrol station dimension table"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: _station_sk
+        data_type: text
+        description: "Station primary key"
+        constraints:
+          - type: not_null
+          - type: primary_key
+        data_tests:
+          - unique
+          - not_null
+      - name: trading_name
+        data_type: text
+        description: "Petrol station name/trading name"
+        data_tests:
+          - not_null
+      - name: address
+        data_type: text
+        description: "Petrol station street address"
+        data_tests:
+          - not_null
+      - name: suburb
+        data_type: text
+        description: "Petrol station suburb"
+        data_tests:
+          - not_null
+      - name: dbt_loaded_at
+        data_type: timestamp
+        description: "Timestamp of data load to schema"
+
+  - name: dim_suburb
+    description: "Suburb/location dimension table"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: _suburb_sk
+        data_type: text
+        description: "Suburb primary key"
+        constraints:
+          - type: not_null
+          - type: primary_key
+        data_tests:
+          - unique
+          - not_null
+      - name: suburb
+        description: "Suburb/location name"
+        data_type: text
+        data_tests:
+          - not_null
+      - name: postcode
+        data_type: integer
+        description: "Suburb/location postal code"
+        data_tests:
+          - not_null
+      - name: dbt_loaded_at
+        data_type: timestamp
+        description: "Timestamp of data load to schema"
+
+  - name: fct_fuel_price
+    description: "Fuel prices by fuel type by day by station"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: date_key
+        data_type: integer
+        description: "publish date and dim date fk"
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "{{ target.schema }}_marts.dim_date(date_key)"
+        data_tests:
+          - not_null
+      - name: _station_sk
+        data_type: text
+        description: "dim station fk"
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "{{ target.schema }}_marts.dim_station(_station_sk)"
+        data_tests:
+          - not_null
+      - name: _area_sk
+        data_type: text
+        description: "dim area fk"
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "{{ target.schema }}_marts.dim_area(_area_sk)"
+        data_tests:
+          - not_null
+      - name: _brand_sk
+        data_type: text
+        description: "dim brand fk"
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "{{ target.schema }}_marts.dim_brand(_brand_sk)"
+        data_tests:
+          - not_null
+      - name: _region_sk
+        data_type: text
+        description: "dim region fk"
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "{{ target.schema }}_marts.dim_region(_region_sk)"
+        data_tests:
+          - not_null
+      - name: _suburb_sk
+        data_type: text
+        description: "dim suburb fk"
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "{{ target.schema }}_marts.dim_suburb(_suburb_sk)"
+        data_tests:
+          - not_null
+      - name: publish_date
+        data_type: date
+        description: "Date for which the price is valid"
+        data_tests:
+          - not_null
+      - name: product_price
+        data_type: double precision
+        description: "Fuel price"
+        data_tests:
+          - not_null
+      - name: product_description
+        data_type: text
+        description: "Description of fuel. Fuel type."
+        data_tests:
+          - not_null
+      - name: dbt_loaded_at
+        data_type: timestamp
+        description: "Timestamp of data load to schema"
